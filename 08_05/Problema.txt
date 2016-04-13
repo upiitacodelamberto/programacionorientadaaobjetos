@@ -1,0 +1,34 @@
+Sistema de planificacion
+Febrero
+D L M  M  J  V  S 
+  1 2  3  4  5  6
+7 8 9 10 11 12
+
+Suponga que debemos planificar cierta cantidad de actividades 
+(ACT0, ACT1, ACT2, ..., ACT N-1) en cierta cantidad de dias 
+de la semana durante un periodo de tiempo dado (desde una fecha 
+inicial hasta una fecha final, incluyendo los "extremos"). Supondremos 
+que en los dias de la semana a utilizar se destinaran cantidades 
+diferentes de medias horas (u horas) pero con la restriccion de 
+que la cantidad de medias horas sera constante por el dia de la 
+semana (por ejemplo 1 hora los martes y 2 horas los jueves). Las 
+actividades deberan planificarse de manera secuencial, es decir, 
+una vez que se ha asignado las medias horas de uno de los dias a 
+utilizar, no debera ser posible asignar las mismas medias horas 
+para otr actividad ni para otra parte de la misma actividad.
+
+Ejemplo:
+Supongamosel periodo del Lunes 1 de febrero de 2016 al Viernes 
+12 de febrero de 2016 (2 semanas). Supongamos tambienque las 
+actividades estan dadas por los temas del curso de Programacion 
+Avanzada:
+ACT[0]="Clases", 5MH (2.5H)
+ACT[1]="Objetos", 3MH (1.5H)
+ACT[2]="Herencia", 2MH (1.0H)
+ACT[3]="Polimorfismo", 2MH (1.0H)
+ACT[4]="Abstraccion", 6MH (3.0H)
+5 actividades que requieren un total de 18H.
+
+Como restriccion en este ejemplo supomgamos que se deberan utilizar 
+dos medias horas (1H) los dias Martes y cuatro medias horas (2H) 
+los dias Jueves.
