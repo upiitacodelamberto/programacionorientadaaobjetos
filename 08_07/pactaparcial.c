@@ -180,7 +180,7 @@ main(int argc,char *argv[])
   
   //Ahora para poner a prueba la funcion moda
   printf("PRUEBA DE LA FUNCION moda()\n");
-  int NA[]={23,45,45,89,89,34,80,75,23,24}; 
+  int NA[]={23,45,42,89,86,34,80,75,25,24}; 
   printf("En el arreglo\n");
   printarr(NA,sizeof(NA)/sizeof(int));
   printf("\n");
