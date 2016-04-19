@@ -2,14 +2,42 @@
 
 
 void mostrarbits(int);
-void mostrarbits(long num);
+void mostrarbits(long);
+class clasefloat{
+public:
+  float fnum;
+  clasefloat(float f):fnum(f){ }
+};//end class clasefloat
+long
+operator>>(clasefloat cf,int i)
+{
+  long rl=(long)*(void**)&cf.fnum;
+  return rl>>i;
+}
+void
+mostrarbits(float fn)
+{
+  clasefloat f(fn);
+  for(int i=31;i>=0;i--)
+  {
+    switch(i){
+      case 30:
+        printf(" %d",(f>>i)&0x1);break;
+      case 22:
+        printf(" %d",(f>>i)&0x1);break;
+      default:
+        printf("%d",(f>>i)&0x1);break;
+    }
+  }
+  printf("\n");
+}
 
 int
 main()
 {
-  printf("Un int se guarda en %d bytes\n",sizeof(float));
+  printf("Un int se guarda en %d bytes\n",sizeof(int));
   mostrarbits(20);
-  float fnum=20.125;
+  float fnum=20.0;
   //int *intPt=*(void**)&fnum; /**/
   //mostrarbits(*intPt);
   printf("\n\n");
@@ -39,6 +67,7 @@ el exponente es 4,\n mantisa=0b010 0000 0000 0000 0000 0000, el numero es -0b1.0
   long feni=(long)*(void**)&fnum;
   int i;
   //for(i=8*sizeof(long)-1;i>=0;i--)
+  printf("Se muestra el patron de bits correspondiente al float %f\n",fnum);
   printf("%f es  ",fnum);
   for(i=31;i>=0;i--)
   {
@@ -54,6 +83,7 @@ el exponente es 4,\n mantisa=0b010 0000 0000 0000 0000 0000, el numero es -0b1.0
   printf("\n");
   fnum=-fnum;
   feni=(long)*(void**)&fnum;
+  printf("Se muestra el patron de bits correspondiente al float %f\n",fnum);
   printf("%f es ",fnum);
   for(i=31;i>=0;i--)
   {
@@ -69,15 +99,23 @@ el exponente es 4,\n mantisa=0b010 0000 0000 0000 0000 0000, el numero es -0b1.0
   printf("\n");
   fnum=3.1416;
   long Num=(long)*(void**)&fnum;
+  printf("Se muestra el patron de bits correspondiente al float %f\n",fnum);
   printf("%f es  ",fnum);
   mostrarbits(Num);
   fnum=-fnum;
   Num=(long)*(void**)&fnum;
+  printf("Se muestra el patron de bits correspondiente al float %f\n",fnum);
   printf("%f es ",fnum);
   mostrarbits(Num);
+  
+  printf("\n\n%f es ",fnum);
+  mostrarbits(fnum);
+
+  printf("\n\n%f es ",5.675f);
+  mostrarbits(5.675f);
 
   return 0;
-}
+}//end main()
 
 /*
 Mostrar los bits que usa el compilador para
@@ -91,13 +129,14 @@ mostrarbits(int num)
   int numdbits=8*sizeof(int);
   for(i=numdbits-1;i>=0;i--)
   {
-    printf("%d",(num>>i)&0x00000001);break;
+    printf("%d",(num>>i)&0x00000001);
   }
 }
 
 /*
 Se debe pasar como argumento un long obtenido asi:
   long num=(long)*(void**)&fnum;
+donde fnum es un float.
 */
 void
 mostrarbits(long num)
