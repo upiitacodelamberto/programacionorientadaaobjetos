@@ -6,9 +6,10 @@ DEBUG = -g
 ##CFILES:= main.cpp modelo.cpp String_Tokenizer.cpp prueba.cpp hacerPruebas.cpp
 ##CFILES:= modelo.cpp String_Tokenizer.cpp prueba.cpp hacerPruebas.cpp
 #CFILES:= modelo.cpp hacerPruebas.cpp String_Tokenizer.cpp
-CFILES:= main.cpp String_Tokenizer.cpp
+CFILES:= main.cpp modelo.cpp String_Tokenizer.cpp
 ##TARGET = conteosdinamicos
 #TARGET = pruebas
+TARGET = testpoo
 INCLUDE_FLAGS:=$(patsubst %,-I%,$(INCLUDE_DIRS))
 
 CC=g++
@@ -23,8 +24,8 @@ vpath %.o objects
 COBJECTS:= $(patsubst %.cpp,%.o,$(CFILES)) 
 #ASMOBJECTS:= $(patsubst %.S,%.o,$(ASM_FILES))
 
-#all: $(TARGET).out 
-all: $(TARGET) dummprueba mmain
+all: $(TARGET).out 
+#all: $(TARGET) dummprueba mmain
 #all:  pruebas
 objects:
 	mkdir objects
