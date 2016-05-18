@@ -6,24 +6,7 @@ using std::string;
     del siguiente token y end sea la terminacion.
 */
 void String_Tokenizer::find_next(){
-  if (end!=std::string::npos) {
-    std::string tmp=the_source.substr(end,2);
-    std::string::size_type n=tmp.find(",,");
-    if (n==0) {
-      start=end;
-      end++;
-    } else {
-      //Encuentra el primer caracter que no es un delimitador.
-      start=the_source.find_first_not_of(the_delim, end);
-      //Encuentra el siguiente delimitador
-      end=the_source.find_first_of(the_delim, start);
-    }
-  } else {
-    //Encuentra el primer caracter que no es un delimitador.
-    start=the_source.find_first_not_of(the_delim, end);
-    //Encuentra el siguiente delimitador
-    end=the_source.find_first_of(the_delim, start);
-  }
+  //Su codigo fuente aqui
 }
 
 /** Determina si existen mas tokens
