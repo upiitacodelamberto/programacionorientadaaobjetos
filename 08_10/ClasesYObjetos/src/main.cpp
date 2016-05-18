@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
   //cout<<source_file<<"\n";
 //	proccess_commands();
   for(int i=0;i<CAS.size();i++){
+    CAS[i]->contar_votos();
     cout<<*CAS[i]<<"\n";
   }
 
