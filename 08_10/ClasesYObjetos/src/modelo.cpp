@@ -137,9 +137,22 @@ string Casilla::get_tipo(){
 }
 
 Casilla::Casilla(string dis, string sec, string cas, string deleg, string tip):
-distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
+distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){
+}
 
 Casilla::Casilla(string dis, string sec, string cas, string deleg, string tip, string PCC):
 distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip), PartCandCoal(PCC){ }
 
+Casilla::Casilla(vector<string> vdt):tdl(vdt),cdvotos(0){ }
+
+ostream&
+operator<<(ostream& out,Casilla& c)
+{
+  out<<"Casilla ";
+  for(int i=0;i<5;i++){
+    out<<c.tdl[i]<<" ";
+  }
+  out<<"Num. de votos="<<c.cdvotos;
+  return out;
+}
 

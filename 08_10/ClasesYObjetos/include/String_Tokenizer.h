@@ -25,7 +25,7 @@ class String_Tokenizer{
   */
   std::string next_token();
 
-  private:
+//  private:
   /** Ubicar start y end de manera que start sea el indice del comienzo del 
       siguiente token y end sea la terminacion. 
     */

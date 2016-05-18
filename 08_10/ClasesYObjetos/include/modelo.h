@@ -60,7 +60,7 @@ typedef struct CasiCasilla{
 }CasiCasilla;
 
 /**
- Las columnas del documento ``1 Resulatdos secciones.csv'' i
+ Las columnas del documento ``1 Resulatdos secciones.csv'' 
  indican lo siguiente: (O usando sintaxis \LaTeX el codigo seria:)
  \begin{tabular}{ccccc}
  ``La primera esta vacia''&SECCION&CASILLA&DELEGACION&TIPO&PAN&PRI&PRD&
@@ -69,34 +69,62 @@ typedef struct CasiCasilla{
  EFRAIN MORALES&EDGAR MONTERO&PATRICIO DEL VALLE&PRI-PVEM&PRD-PT-NA&PRD-PT&
  PRD-NA&PT-NA&VOTOS NULOS&NO REGISTRADOS\\
  \end{tabular}
- 
+ Es decir que en este archivo las celdas en donde pueden haber votos en la casilla son a 
+ partir de la sexta en cada fila (linea del "archivo .csv adaptado"). Dado que los indices 
+ de los tokens guardados en un vector empiezan desde 0, los tokens que contendran votos 
+ seran a partir del indice 5.
  */
 class Casilla {
-	string distrito;	//segun parece siempre es un entero
-	string seccion;	        //tambien parece ser siempre un entero
-	string casilla;		//Casilla p.ej.:"B", "C1", "B", ..., "C4", "B", "C1".
-        string delegacion;      //Delegacion donde se ubica la casilla
-        string tipo;            //Tipo p. ej. "JD", "DM".
-//	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
+  string distrito;	//segun parece siempre es un entero
+  string seccion;	//tambien parece ser siempre un entero
+  string casilla;	//Casilla p.ej.:"B", "C1", "B", ..., "C4", "B", "C1".
+  string delegacion;    //Delegacion donde se ubica la casilla
+  string tipo;          //Tipo p. ej. "JD", "DM".
+//  bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
                                 //reportado al PREP
   string PartCandCoal;  /* Partido, Candidato o Coalicion */
+  /**
+   En uno de los archivos .xls(x) que tengo (Resultados_secciones_ultimo_PREP.xlsm), 
+   las columnas de la parte donde hay datos tienen los siguientes ``encabezados'' (uso sintaxis \LaTeX):
+ID & DISTRITO & SECCION & CASILLA & DELEGACION & TIPO & PAN & PRI & PRD & PVEM & PT & MC & NA &
+MORENA & PH & ES & ALEJANDRO VINAY & NAZARIO ROBERTO & ARNE SIDNEY & JORGE RIVERA & JUAN  DAVID &
+OSCAR ANTONIO & ROSARIO ERIKA & JUDITH BARRIOS & EFRAIN MORALES & EDGAR MONTERO & PATRICIO DEL VALLE &
+PRI-PVEM & PRD-PT-NA & PRD-PT & PRD-NA & PT-NA & VOTOS NULOS & NO REGISTRADOS \\
+   Es decir, las celdas en donde pueden haber votos en la casilla son en este archivo a partir de la
+   septima en cada fila (linea del "archivo .csv adaptado"). Dado que los indices de los tokens 
+   guardados en un vector empiezan desde 0, los tokens que contendran votos seran a partir del 
+   indice 6. Resulta pues, que el indice a partir del cual pueden haber votos en un ``vector de 
+   tokens de casilla NO ES CONSTANTE, por lo cual habra que contemplar un metodo para determinar 
+   este indice.
+  */
+  vector<string> tdl;   /*tokens de la linea en el "archivo adaptado" (vease include/prueba.h)*/
+  int cdvotos;        /* Cantidad de votos en la casilla */
         
  public:
   string get_PartCandCoal(){return PartCandCoal;}
   static int indexPrimSinVotos;
-         string get_distrito();
-	 string get_seccion();
-         string get_casilla();
-         string get_delegacion();
-         string get_tipo();
-//         void set_numDCasilla(int N);
-//         void set_reportadaAlPREP(bool b);
-         //Constructores
-         Casilla(){             //Por ahora vacio 2015.11.17
-         } 
-         Casilla(string dis, string sec, string cas, string deleg, string tip);
+  string get_distrito();
+  string get_seccion();
+  string get_casilla();
+  string get_delegacion();
+  string get_tipo();
+//  void set_numDCasilla(int N);
+//  void set_reportadaAlPREP(bool b);
+  /**
+    Contar los votos en la casilla y colocar el resultado en la 
+    variable de objeto int cdvotos.
+  */
+  void contar_votos();
+  //Constructores
+  Casilla(){             //Por ahora vacio 2015.11.17
+  } 
+  Casilla(string dis, string sec, string cas, string deleg, string tip);
   Casilla(string dis, string sec, string cas, string deleg, string tip, string PCC);
+  Casilla(vector<string> toksdline); /*constructor que recibe vector de 
+                                        tokens de linea de "archivo adaptado" (vease 
+                                        include/prueba.h)*/
   static int index_primera_sin_votos();
+  friend ostream& operator<<(ostream&,Casilla&);
 };//End class Casilla
 
 /**

@@ -51,6 +51,6 @@ mmain:src/main.cpp src/String_Tokenizer.cpp src/modelo.cpp
 
 .PHONY:  
 clean:
-	rm -frv objects pruebas dummprueba
+	rm -frv objects pruebas dummprueba testpoo testpoo.out
 #	rm $(TARGET).out
 	
